@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "playlists",
+  "info": {
+    "singularName": "playlist",
+    "pluralName": "playlists",
+    "displayName": "Playlist"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true,
+      "default": "Playlist Unique",
+      "minLength": 1
+    },
+    "tracks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::track.track",
+      "mappedBy": "playlists"
+    }
+  }
+}
