@@ -852,6 +852,13 @@ export interface ApiTrackTrack extends Schema.CollectionType {
       'manyToMany',
       'api::playlist.playlist'
     >;
+    artist: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    TrackByArtist: Attribute.String & Attribute.Required & Attribute.Private;
+    slug: Attribute.UID<'api::track.track', 'TrackByArtist'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
