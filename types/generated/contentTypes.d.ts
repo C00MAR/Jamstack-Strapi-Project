@@ -828,6 +828,42 @@ export interface ApiPlaylistPlaylist extends Schema.CollectionType {
   };
 }
 
+export interface ApiStyleStyle extends Schema.CollectionType {
+  collectionName: 'styles';
+  info: {
+    singularName: 'style';
+    pluralName: 'styles';
+    displayName: 'Style';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    tracks: Attribute.Relation<
+      'api::style.style',
+      'manyToMany',
+      'api::track.track'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::style.style',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::style.style',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTrackTrack extends Schema.CollectionType {
   collectionName: 'tracks';
   info: {
@@ -859,6 +895,11 @@ export interface ApiTrackTrack extends Schema.CollectionType {
       }>;
     TrackByArtist: Attribute.String & Attribute.Required & Attribute.Private;
     slug: Attribute.UID<'api::track.track', 'TrackByArtist'>;
+    styles: Attribute.Relation<
+      'api::track.track',
+      'manyToMany',
+      'api::style.style'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -896,6 +937,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::playlist.playlist': ApiPlaylistPlaylist;
+      'api::style.style': ApiStyleStyle;
       'api::track.track': ApiTrackTrack;
     }
   }

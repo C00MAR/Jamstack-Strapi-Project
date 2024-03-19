@@ -45,6 +45,12 @@
     "slug": {
       "type": "uid",
       "targetField": "TrackByArtist"
+    },
+    "styles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::style.style",
+      "mappedBy": "tracks"
     }
   }
 }
