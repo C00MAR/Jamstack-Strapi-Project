@@ -51,6 +51,11 @@
       "relation": "manyToMany",
       "target": "api::style.style",
       "mappedBy": "tracks"
+    },
+    "createthe": {
+      "type": "date",
+      "default": "2024-01-01",
+      "required": true
     }
   }
 }

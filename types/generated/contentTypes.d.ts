@@ -794,12 +794,13 @@ export interface ApiPlaylistPlaylist extends Schema.CollectionType {
     singularName: 'playlist';
     pluralName: 'playlists';
     displayName: 'Playlist';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Title: Attribute.String &
+    title: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
         minLength: 1;
@@ -900,6 +901,9 @@ export interface ApiTrackTrack extends Schema.CollectionType {
       'manyToMany',
       'api::style.style'
     >;
+    createthe: Attribute.Date &
+      Attribute.Required &
+      Attribute.DefaultTo<'2024-01-01'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
